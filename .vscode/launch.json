@@ -1,0 +1,105 @@
+
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "2012",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/pdf_importer.py",
+      "args": [
+        "2012",
+      ],
+    },
+	{
+	  "name": "2013",
+	  "type": "python",
+	  "request": "launch",
+	  "program": "${workspaceFolder}/pdf_importer.py",
+	  "args": [
+		"2013",
+	  ],
+	},
+	{
+	  "name": "2014",
+	  "type": "python",
+	  "request": "launch",
+	  "program": "${workspaceFolder}/pdf_importer.py",
+	  "args": [
+		"2014",
+	  ],
+	},
+	{
+	  "name": "2015",
+	  "type": "python",
+	  "request": "launch",
+	  "program": "${workspaceFolder}/pdf_importer.py",
+	  "args": [
+		"2015",
+	  ],
+	},
+	{
+	  "name": "2016",
+	  "type": "python",
+	  "request": "launch",
+	  "program": "${workspaceFolder}/pdf_importer.py",
+	  "args": [
+		"2016",
+	  ],
+	},
+	{
+	  "name": "2017",
+	  "type": "python",
+	  "request": "launch",
+	  "program": "${workspaceFolder}/pdf_importer.py",
+	  "args": [
+		"2017",
+	  ],
+	},
+	{
+	  "name": "2018",
+	  "type": "python",
+	  "request": "launch",
+	  "program": "${workspaceFolder}/pdf_importer.py",
+	  "args": [
+		"2018",
+	  ],
+	},
+	{
+	  "name": "2019",
+	  "type": "python",
+	  "request": "launch",
+	  "program": "${workspaceFolder}/pdf_importer.py",
+	  "args": [
+		"2019",
+	  ],
+	},
+	{
+	  "name": "2020",
+	  "type": "python",
+	  "request": "launch",
+	  "program": "${workspaceFolder}/pdf_importer.py",
+	  "args": [
+		"2020",
+	  ],
+	},
+	{
+	  "name": "2021",
+	  "type": "python",
+	  "request": "launch",
+	  "program": "${workspaceFolder}/pdf_importer.py",
+	  "args": [
+		"2021",
+	  ],
+	},
+	{
+		"name": "2022",
+		"type": "python",
+		"request": "launch",
+		"program": "${workspaceFolder}/pdf_importer.py",
+		"args": [
+		  "2022",
+		],
+	}
+  ]
+}

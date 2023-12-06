@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+pdfs/**
+*output.csv
+
 # C extensions
 *.so
 
@@ -131,7 +134,7 @@ venv.bak/
 # Spyder project settings
 .spyderproject
 .spyproject
-
+dev_venv/**
 # Rope project settings
 .ropeproject
 
