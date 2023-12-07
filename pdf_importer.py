@@ -7,14 +7,14 @@ import sys
 POSSIBLE_YEARS = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
 #REGEX  DICT POSITIONS (PRODUCT EXPRESSION, CNPJ EXPRESSION, DATE EXPRESSION)
 RELATION_YEAR_REGEX = {
-    '2012': (r"\b\d{7}\b\s(.*?)(?=\b\d{7}\b|\n|$)",),
-    '2016': (r"\b\d{7}\b(.*?)-",),
-    '2017': (r"\b\d{7}\b(.*?)-",),
-    '2018': (r"\b\d{7}-F\b(.*?)-",),
-    '2019': (r"\b\d{7}-F\b(.*?)-",),
-    '2020': (r"\b\d{7}-F\b(.*?)-",),
-    '2021': (r"\b\d{7}-F\b(.*?)-",),
-    '2022': (r"\b\d{7}-F\b(.*?)-",),
+    '2012': (r"\b\d{7}\b\s([\s\S]*?)(?=\b\d{7}\b|$)",r"CNPJ / CPF\s+([\d\.\/-]+)", r"DATA DA EMISSÃO\s*\n+\s*(\d{2}/\d{2}/\d{4})"),
+    '2016': (r"\b\d{7}\b(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
+    '2017': (r"\b\d{7}\b(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
+    '2018': (r"\b\d{7}-F\b(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
+    '2019': (r"\b\d{7}-F\b(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
+    '2020': (r"\b\d{7}-F\b(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
+    '2021': (r"\b\d{7}-F\b(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
+    '2022': (r"\b\d{7}-F\b(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})")
 }
 
 class PDFTransformer:
@@ -34,11 +34,10 @@ class PDFTransformer:
                 if current_text:
                     count += 1
                     # # print(f'Processing page {count}...')
-                    print(current_text)
+                    # print(current_text)
                     matching_products = self.extract_product_entries_from_page(current_text)
                     cnpj, date = self.extract_date_cnpj_from_page(current_text)
                     all_products.extend((cnpj, date, matching_products))
-
             return all_products
 
     def extract_product_entries_from_page(self, text):
@@ -46,7 +45,7 @@ class PDFTransformer:
         pattern = RELATION_YEAR_REGEX[self.year][0]
         matches = re.findall(pattern, text, re.MULTILINE | re.DOTALL)
         for match in matches:
-            print(match)
+            # print(match)
             product, values = self.extract_values_from_product(match)
             products.append((product, values))
         return products
@@ -60,12 +59,12 @@ class PDFTransformer:
     #get value from CNPJ / CPF until DATA DA EMISSÃO then date next to it
     def extract_date_cnpj_from_page(self, text):
         # Regular expression for CNPJ/CPF (this is a basic pattern, may need to adjust)
-        cnpj_pattern = r"CNPJ / CPF\s+([\d\.\/-]+)"
+        cnpj_pattern = RELATION_YEAR_REGEX[self.year][1]
         cnpj_match = re.search(cnpj_pattern, text)
         cnpj = cnpj_match.group(1) if cnpj_match else None
 
         # Regular expression for the date
-        date_pattern = r"DATA DA EMISSÃO\s+\n\s*(\d{2}/\d{2}/\d{4})"
+        date_pattern = RELATION_YEAR_REGEX[self.year][2]
         date_match = re.search(date_pattern, text)
         date = date_match.group(1) if date_match else None
         print(f'Found CNPJ {cnpj} Date: {date}')
