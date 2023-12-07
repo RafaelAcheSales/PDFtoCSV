@@ -2,6 +2,42 @@
 {
   "version": "0.2.0",
   "configurations": [
+	{
+		"name": "2008--2017",
+		"type": "python",
+		"request": "launch",
+		"program": "${workspaceFolder}/pdf_importer.py",
+		"args": [
+		  "2008",
+		],
+	},
+	{
+		"name": "2009",
+		"type": "python",
+		"request": "launch",
+		"program": "${workspaceFolder}/pdf_importer.py",
+		"args": [
+		  "2009",
+		],
+	},
+	{
+		"name": "2010",
+		"type": "python",
+		"request": "launch",
+		"program": "${workspaceFolder}/pdf_importer.py",
+		"args": [
+		  "2010",
+		],
+	},
+	{
+		"name": "2011",
+		"type": "python",
+		"request": "launch",
+		"program": "${workspaceFolder}/pdf_importer.py",
+		"args": [
+		  "2011",
+		],
+	},
     {
       "name": "2012",
       "type": "python",

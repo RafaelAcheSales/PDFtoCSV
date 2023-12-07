@@ -5,7 +5,7 @@ __pycache__/
 
 pdfs/**
 *output.csv
-
+*.txt
 # C extensions
 *.so
 
