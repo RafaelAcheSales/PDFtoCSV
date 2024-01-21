@@ -8,18 +8,22 @@ POSSIBLE_YEARS = ['2008','2009','2010','2011',
                   '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
 #REGEX  DICT POSITIONS (PRODUCT EXPRESSION, CNPJ EXPRESSION, DATE EXPRESSION)
 RELATION_YEAR_REGEX = {
-    '2008': (r"(\b\d{7}\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"), #2017
-    '2009': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),#2018
-    '2010': (r"(\b\d{7}\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"), #2016
-    '2011': (r"(\b\d{7}\b)\s([\s\S]*?)(?=\b\d{7}\b|$)",r"CNPJ / CPF\s+([\d\.\/-]+)", r"DATA DA EMISSÃO\s*\n+\s*(\d{2}/\d{2}/\d{4})"), #2012
-    '2012': (r"(\b\d{7}\b)\s([\s\S]*?)(?=\b\d{7}\b|$)",r"CNPJ / CPF\s+([\d\.\/-]+)", r"DATA DA EMISSÃO\s*\n+\s*(\d{2}/\d{2}/\d{4})"),
-    '2016': (r"(\b\d{7}\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
-    '2017': (r"(\b\d{7}\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
-    '2018': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
-    '2019': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
-    '2020': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
-    '2021': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
-    '2022': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})")
+    '2008': (r"(\b\d{7}\b)(.*?)-|(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})", r"N[º\.]\s*(\d+(\.\d+)?)"), #2017
+    '2009': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})", r"N[º\.]\s*(\d+(\.\d+)?)"),#2018
+    '2010': (r"(\b\d{7}\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})", r"N[º\.]\s*(\d+(\.\d+)?)"), #2016
+    '2011': (r"(\b\d{7}\b)\s([\s\S]*?)(?=\b\d{7}\b|$)",r"CNPJ / CPF\s+([\d\.\/-]+)", r"EMISSÃO:\s*(\d{2}/\d{2}/\d{4})", r"Nº\.\s*\d+(\.\d+)*"), #2012
+    '2012': (r"(\b\d{7}\b)\s([\s\S]*?)(?=\b\d{7}\b|$)",r"CNPJ / CPF\s+([\d\.\/-]+)", r"EMISSÃO:\s*(\d{2}/\d{2}/\d{4})", r"Nº\.\s*\d+(\.\d+)*"),
+    '2013': (r"(\b\d{7}\b)\s([\s\S]*?)(?=\b\d{7}\b|$)",r"CNPJ / CPF\s+([\d\.\/-]+)", r"EMISSÃO:\s*(\d{2}/\d{2}/\d{4})", r"Nº\.\s*\d+(\.\d+)*"),
+    '2014': (r"(\b\d{7}\b)\s([\s\S]*?)(?=\b\d{7}\b|$)",r"CNPJ / CPF\s+([\d\.\/-]+)", r"EMISSÃO:\s*(\d{2}/\d{2}/\d{4})", r"Nº\.\s*\d+(\.\d+)*"),
+    '2015': (r"(\b\d{7}\b)\s([\s\S]*?)(?=\b\d{7}\b|$)",r"CNPJ / CPF\s+([\d\.\/-]+)", r"EMISSÃO:\s*(\d{2}/\d{2}/\d{4})", r"Nº\.\s*\d+(\.\d+)*"),
+    '2016': (r"(\b\d{7}\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})", r"N[º\.]\s*(\d+(\.\d+)?)"),
+    # '2017': (r"(\b\d{7}\b)(.*?)-|(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})"),
+    '2017': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})", r"N[º\.]\s*(\d+(\.\d+)?)"),
+    '2018': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})", r"N[º\.]\s*(\d+(\.\d+)?)"),
+    '2019': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})", r"N[º\.]\s*(\d+(\.\d+)?)"),
+    '2020': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})", r"N[º\.]\s*(\d+(\.\d+)?)"),
+    '2021': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})", r"N[º\.]\s*(\d+(\.\d+)?)"),
+    '2022': (r"(\b\d{7}-F\b)(.*?)-", r"CNPJ/CPF\s*\n*\s*(\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2})", r"DATA DE EMISSÃO\s*\n*\s*(\d{2}/\d{2}/\d{4})", r"N[º\.]\s*(\d+(\.\d+)?)")
 }
 
 class PDFTransformer:
@@ -40,26 +44,49 @@ class PDFTransformer:
                     current_text = current_text.replace('\n', ' ').replace('\r', ' ')
                     count += 1
                     # # print(f'Processing page {count}...')
-                    print(current_text)
+                    # print(current_text)
+                    current_nota_fiscal = self.find_nota_fiscal(current_text)
+     
                     matching_products = self.extract_product_entries_from_page(current_text)
                     cnpj, date = self.extract_date_cnpj_from_page(current_text)
                     all_products.extend([(cnpj, date, product) for product in matching_products])
             return all_products
 
+    def find_nota_fiscal(self, text):
+        # Regular expression for the nota fiscal is 4th in the tuple
+        pattern = RELATION_YEAR_REGEX[self.year][3]
+        match = re.search(pattern, text)
+        nota_fiscal = match.group(1) if match else None
+        print(f'Found nota fiscal {nota_fiscal}')
+        return nota_fiscal
+    
+    
     def extract_product_entries_from_page(self, text):
         products = []
-        # Modified pattern to capture the 7-digit number
         pattern = RELATION_YEAR_REGEX[self.year][0]
         matches = re.findall(pattern, text, re.MULTILINE | re.DOTALL)
         for match in matches:
-            # match[0] is the 7-digit number, match[1] is the rest of the string
-            try:
-                product, values = self.extract_values_from_product(match[1])
-                products.append((match[0], product, values))
-            except:
-                pass
-        return products
+            if self.year == '2017':
+                # Special handling for 2017
+                if match[0]:  # First pattern matched
+                    number = match[0]
+                    rest_of_string = match[1]
+                else:  # Second pattern matched
+                    number = match[2]
+                    rest_of_string = match[3]
+            else:
+                # General handling for other years
+                number = match[0]
+                rest_of_string = match[1]
 
+            try:
+                product, values = self.extract_values_from_product(rest_of_string)
+                # print(f'Found product {product} with values {values}')
+                products.append((number, product, values))
+            except Exception as e:
+                # Handle or log the exception
+                print(f"Error processing match: {e}")
+        return products
         
     #get value from CNPJ / CPF until DATA DA EMISSÃO then date next to it
     def extract_date_cnpj_from_page(self, text):
@@ -89,12 +116,14 @@ class PDFTransformer:
         if len(parts) < 2:
             #try to split at 'UNIDADE'
             parts = product.split('UNIDADE')
+        if len(parts) < 2:
+            #try to split at 'GF'
+            parts = product.split('GF')
         
         if len(parts) >= 2:
             # The first part is the product name, and the second part contains the values
             product_name = parts[0].strip()
-            values_part = parts[1]
-
+            values_part = parts[2] if self.year in ['2011', '2012', '2013', '2014', '2015'] and len(parts)>=3 else parts[1]
             # Extract the next three floats from the values part
             pattern = r"(\d+,\d+)\s+(\d+,\d+)\s+(\d+,\d+)"
             matches = re.search(pattern, values_part)
@@ -110,7 +139,7 @@ def write_csv(products, output_file):
     # for product in products:
     #     print(product)
     #     print(type(product))
-    HEADER = ['Codigo Produto','Produto', 'Quantidade', 'Valor Unitário', 'Valor Total', 'CNPJ', 'Data']
+    HEADER = ['Nota Fiscal', 'Codigo Produto','Produto', 'Quantidade', 'Valor Unitário', 'Valor Total', 'CNPJ', 'Data']
     with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
         writer.writerow(HEADER)
